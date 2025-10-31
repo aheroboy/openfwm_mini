@@ -1,0 +1,12 @@
+<navigation-bar class="nav" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+  <view class="agreement-container">
+    <scroll-view scroll-y class="content-box {{ios?'ios':'android'}}">
+      <rich-text nodes="{{content}}"></rich-text>
+      <view class="footer">
+      <button class="agree-btn" bindtap="handleBack">我已阅读并同意</button>
+    </view>
+    </scroll-view>
+
+   
+
+</view>

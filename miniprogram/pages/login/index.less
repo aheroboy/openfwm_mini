@@ -1,0 +1,297 @@
+/* login/index.less - 优化版 */
+@import '../../app.less'; // 导入全局样式变量
+
+// 页面容器
+.login-page {
+  min-height: 100vh;
+  background-color: @bg-color; // 使用全局背景色
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: @spacing-md;
+  position: relative;
+  overflow: hidden;
+}
+
+// 主内容容器
+.login-container {
+  width: 100%;
+  max-width: 600rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+  background-color: @card-bg !important; // 添加白色背景(提高优先级)
+  border-radius: @card-radius; // 添加卡片圆角
+  padding: @spacing-xl; // 添加内边距
+  box-shadow: @card-shadow; // 添加卡片阴影
+  overflow: hidden; // 防止内容溢出
+}
+
+// 装饰背景
+.bg-decoration {
+  position: absolute;
+  width: 500rpx;
+  height: 500rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(7,193,96,0.1) 0%, rgba(7,193,96,0) 70%);
+  top: -200rpx;
+  left: -100rpx;
+  z-index: 1;
+}
+
+.bg-decoration-2 {
+  top: auto;
+  bottom: -200rpx;
+  right: -100rpx;
+  background: radial-gradient(circle, rgba(255,125,0,0.1) 0%, rgba(255,125,0,0) 70%);
+}
+
+// Logo包装器
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: @spacing-xl;
+}
+
+// 标语样式
+.slogan {
+  margin-top: @spacing-md;
+  font-size: @font-size-sm;
+  color: @text-secondary !important; // 确保文字颜色正确
+  text-align: center;
+  max-width: 100%; // 增大最大宽度，避免换行
+  width: 100%; // 确保宽度足够
+  background-color: @card-bg !important; // 添加白色背景(提高优先级)
+  padding: @spacing-xs @spacing-sm; // 添加内边距
+  border-radius: @radius-base; // 添加圆角
+  z-index: 11; // 确保在容器内层级最高
+  position: relative; // 配合z-index使用
+}
+
+.logo {
+  border-radius: 32rpx; // 增大圆角，更现代
+  width: 280rpx; // 保持尺寸
+  height: 280rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.15); // 增强阴影
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, @primary-color 0%, @secondary-color 100%);
+  animation: float 4s infinite ease-in-out;
+  position: relative;
+  border: 6rpx solid @card-bg;
+  transform: translateZ(0); // 提升渲染性能
+}
+
+// 浮动动画
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8rpx) rotate(1deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(8rpx) rotate(-1deg); }
+}
+
+// 图片悬停效果
+.logo:hover > image {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.logo > image {
+  width: 90%; // 增加图片宽度
+  height: 90%; // 增加图片高度
+  object-fit: contain; // 确保图片完整显示
+  z-index: 1; // 确保图片在最上层
+  border-radius: 16rpx; // 为图片添加圆角，增强效果
+  transition: all 0.3s ease; // 添加过渡效果
+}
+
+.login-btn-container {
+  width: 100%;
+  margin-top: @spacing-lg;
+  position: relative;
+  border-radius: 80rpx; // 超大圆角，更现代
+  overflow: hidden;
+}
+
+.transparent-btn {
+  width: 100%;
+  height: 100%;
+  padding: @padding-lg 0; // 与原按钮相同的内边距
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.transparent-btn[disabled] {
+  background: transparent !important; // 确保禁用状态下完全透明
+  opacity: 0; // 可选：完全隐藏禁用的透明按钮
+}
+
+.btn-content {
+  width: 100%;
+  padding: @padding-lg 0; // 与原按钮相同的内边距
+  background: @primary-color;
+  color: #fff;
+  font-size: @font-size-md;
+  border-radius: 60rpx; // 超大圆角，更现代
+  box-shadow: 0 6rpx 20rpx rgba(7, 193, 96, 0.35);
+  transition: all @transition-normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
+  }
+
+  &.disabled {
+    opacity: 0.6;
+    background: @text-disabled;
+    box-shadow: none;
+  }
+
+  &:not(.disabled):hover {
+    background: @primary-dark;
+    box-shadow: 0 8rpx 24rpx rgba(7, 193, 96, 0.45);
+    transform: translateY(-2rpx);
+  }
+
+  &:not(.disabled):hover::before {
+    left: 100%;
+  }
+}
+
+.login-btn-container.disabled {
+  opacity: 0.6;
+}
+
+.login-btn-container:not(.disabled):active .btn-content {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+// 按钮主文本
+.btn-text {
+  font-size: @font-size-md;
+  font-weight: bold;
+  background-color: transparent; // 确保文本透明背景
+}
+
+// 按钮副标题
+.btn-subtext {
+  font-size: @font-size-sm;
+  opacity: 0.9;
+  margin-top: 6rpx;
+  background-color: transparent; // 确保文本透明背景
+}
+
+.agreement {
+  margin-top: @spacing-xl;
+  font-size: @font-size-sm;
+  color: @text-tertiary;
+  width: 100%;
+  text-align: center;
+}
+
+.agreement-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: @spacing-xs;
+  line-height: 1.4;
+}
+
+// 自定义复选框
+.custom-checkbox {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+  border: 2rpx solid @border-color;
+  border-radius: 6rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: @card-bg;
+}
+
+.custom-checkbox[checked] {
+  border-color: @primary-color;
+  background-color: @primary-light;
+}
+
+.custom-checkbox[checked]::after {
+  content: '✓';
+  font-size: 16rpx;
+  color: @primary-color;
+  position: absolute;
+}
+
+.link {
+  color: @secondary-color;
+  margin-left: 8rpx;
+  text-decoration: none; // 移除下划线
+  transition: all @transition-fast;
+  position: relative;
+  padding-bottom: 2rpx;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2rpx;
+    bottom: 0;
+    left: 0;
+    background-color: @secondary-color;
+    transition: width @transition-fast;
+  }
+
+  &:hover {
+    color: @primary-color;
+
+    &::after {
+      width: 100%;
+      background-color: @primary-color;
+    }
+  }
+}
+
+// 版本信息
+.version {
+  margin-top: @spacing-xxl;
+  font-size: @font-size-xs;
+  color: @text-tertiary;
+  position: relative;
+  bottom: auto;
+}
+
+// 适配小屏幕
+@media (max-width: @breakpoint-sm) {
+  .logo {
+    width: 200rpx;
+    height: 200rpx;
+  }
+
+  .login-btn,
+  .agreement {
+    width: 90%;
+  }
+}

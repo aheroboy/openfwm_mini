@@ -1,0 +1,31 @@
+<!-- 主容器：全屏居中布局 -->
+<view class="upcoming-container">
+  <!-- 1. 顶部装饰区：原生图标+标题 -->
+  <view class="upcoming-header">
+    <!-- 圆形背景+原生图标（替代 van-icon） -->
+    <view class="upcoming-icon">
+      <icon type="waiting" size="60" color="#4E6EF2" /> <!-- 原生等待图标，type可选其他值 -->
+    </view>
+    <!-- 主标题 -->
+    <view class="upcoming-title">功能即将上线</view>
+    <!-- 副标题：简短说明 -->
+    <view class="upcoming-subtitle">我们正在打磨更优质的体验，敬请期待～</view>
+  </view>
+
+  <!-- 2. 中间提示区：补充说明（可选） -->
+  <view class="upcoming-desc">
+    预计上线时间：2025年9月（具体时间以实际更新为准）
+  </view>
+
+  <!-- 3. 底部功能区：反馈按钮（原生button+自定义图标） -->
+  <view class="upcoming-footer">
+    <button 
+      class="feedback-btn" 
+      bindtap="navigateToFeedback"
+    >
+      <!-- 原生图标（评论图标，替代 van-icon） -->
+      <icon type="comment" size="24" color="#fff" class="btn-icon" />
+      有建议？告诉我们
+    </button>
+  </view>
+</view>

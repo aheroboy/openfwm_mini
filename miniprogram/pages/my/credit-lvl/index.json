@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "navigation-bar": "/components/navigation-bar/index"
+    },
+    "navigationBarTitleText": "钓鱼等级体系",
+    "navigationBarBackgroundColor": "#07C160",
+    "navigationBarTextStyle": "white"
+  }
+  

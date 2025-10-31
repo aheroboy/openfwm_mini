@@ -1,0 +1,268 @@
+// 导入全局样式变量
+@import '../../app.less';
+
+@menu-height: 90rpx;
+
+/* 容器样式 */
+.spot-grid-container {
+  padding-bottom: @spacing-xxl;
+  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
+  background-color: @bg-color;
+  // 添加微妙的背景纹理
+  background-image: radial-gradient(@primary-light 1px, transparent 1px);
+  background-size: 30rpx 30rpx;
+}
+
+.spot-grid-container.ios {
+  height: calc(100vh - @header-bar-height-ios - @menu-height - @spacing-lg);
+}
+
+.spot-grid-container.android {
+  height: calc(100vh - @header-bar-height-android - @menu-height - @spacing-lg);
+}
+
+/* 加载更多提示 */
+.load-more {
+  padding: @spacing-sm;
+  text-align: center;
+  font-size: @font-size-xs;
+  color: @text-tertiary;
+}
+
+/* 空状态提示 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  color: @text-tertiary;
+  font-size: @font-size-sm;
+  text-align: center;
+  padding: 0 @spacing-md;
+}
+
+.empty-state image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: @spacing-sm;
+  opacity: 0.5;
+}
+
+/* 钓点列表项 - 卡片式设计 */
+.spot-item {
+  background-color: @card-bg;
+  border-radius: @card-radius;
+  overflow: hidden;
+  transition: @transition;
+  margin: @spacing-md @spacing-xl;
+  box-shadow: @card-shadow;
+  position: relative;
+  padding: @spacing-lg;
+  border: 1rpx solid @border-light;
+}
+
+/* 悬浮效果 */
+.spot-item:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+/* 钓点名称 */
+.spot-name {
+  font-size: @font-size-xl;
+  font-weight: bold;
+  color: @text-primary;
+  margin-bottom: @spacing-md;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: @line-height-md;
+  padding-bottom: @spacing-sm;
+  border-bottom: 1rpx solid @border-light;
+}
+
+/* 元信息区域 */
+.spot-meta {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: @font-size-sm;
+  color: @text-secondary;
+  flex-direction: row;
+  margin-bottom: @spacing-md;
+  padding: @spacing-xs 0;
+
+  & > view {
+    margin: @spacing-xs @spacing-sm @spacing-xs 0;
+    padding: @spacing-xs @spacing-sm;
+    background-color: @bg-tertiary;
+    border-radius: @radius-base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60rpx;
+    
+    text {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+/* 城市名称特殊样式 */
+.city-name {
+  background-color: @primary-light !important;
+  color: @primary-color !important;
+  font-weight: 500;
+}
+
+/* 加载状态 */
+.loading-status {
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100rpx;
+  padding-bottom: 100rpx;
+  
+  .loading,
+  .no-more {
+    font-size: @font-size-sm;
+    color: @text-tertiary;
+    text-align: center;
+    padding: @spacing-sm;
+  }
+}
+
+/* 标签状态样式 */
+.spot-meta view text {
+  position: relative;
+  
+  /* 秘密钓点标签 */
+  &:nth-child(2) {
+    color: @danger-color;
+    font-weight: 500;
+  }
+  
+  /* 积分设置标签 */
+  &:nth-child(3) {
+    color: @primary-color;
+    font-weight: 500;
+  }
+}
+
+/* 特殊状态标记 */
+.spot-item {
+  /* 置顶钓点标记 */
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rpx;
+    height: 100%;
+    background-color: @primary-color;
+    display: none;
+  }
+  
+  /* 高亮特殊钓点 */
+  &.highlighted:before {
+    display: block;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: @breakpoint-md) {
+  .spot-item {
+    margin: @spacing-sm;
+    padding: @spacing-md;
+  }
+  
+  .spot-name {
+    font-size: @font-size-lg;
+  }
+  
+  .spot-meta {
+    font-size: @font-size-xs;
+    
+    & > view {
+      margin: @spacing-xs;
+      padding: @spacing-xs;
+    }
+  }
+  
+  .spot-my-ops {
+    & > view {
+      width: 60rpx;
+      height: 60rpx;
+      margin-left: @spacing-sm;
+    }
+    
+    image {
+      height: 36rpx;
+      width: 36rpx;
+    }
+  }
+}
+
+/* 暗黑模式适配 */
+.dark-theme {
+  .spot-grid-container {
+    background-color: #1F1F1F;
+    background-image: none;
+  }
+  
+  .spot-item {
+    background-color: @card-bg-dark;
+    border-color: @border-color-dark;
+  }
+  
+  .spot-name {
+    color: @text-primary-dark;
+    border-color: @border-color-dark;
+  }
+  
+  .spot-meta {
+    color: @text-secondary-dark;
+    
+    & > view {
+      background-color: #2D2D2D;
+      
+      text {
+        color: @text-secondary-dark;
+      }
+    }
+  }
+  
+  .city-name {
+    background-color: rgba(7, 193, 96, 0.15) !important;
+    color: @primary-color !important;
+  }
+  
+  .spot-meta view text:nth-child(2) {
+    color: #FF6B6B;
+  }
+  
+  .spot-meta view text:nth-child(3) {
+    color: @primary-color;
+  }
+  
+  .spot-my-ops {
+    border-color: @border-color-dark;
+    
+    & > view {
+      background-color: #2D2D2D;
+    }
+    
+    & > view:active {
+      background-color: #3A3A3A;
+    }
+  }
+  
+  .loading-status .loading,
+  .loading-status .no-more {
+    color: @text-tertiary;
+  }
+}

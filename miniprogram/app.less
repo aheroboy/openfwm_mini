@@ -1,0 +1,321 @@
+/**app.wxss**/
+// 设计系统变量 - 优化版/
+// 色彩系统
+@primary-color: #07C160; // 主色调：微信绿，象征自然与活力
+@primary-light: #E6F7F0; // 主色浅色调
+@secondary-color: #FF7D00; // 辅助色(活力橙)
+@secondary-light: #FFF4E5; // 辅助色浅背景
+@accent-color: #FF9800; // 辅助色2：橙黄，代表阳光
+@accent-light: #FFF3E0; // 辅助色2浅色调
+@primary-dark: #1A56A8; // 主色深色变体
+@success-color: #00B42A; // 成功色
+@warning-color: #FF7D00; // 警告色
+@danger-color: #F53F3F; // 危险色
+@text-primary: #1D2129; // 主要文本
+@text-secondary: #4E5969; // 次要文本
+@text-placeholder: #86909C; // 占位文本
+@bg-primary: #F2F3F5; // 主要背景
+@bg-secondary: #F2F3F5; // 次要背景
+@bg-tertiary: #F7F8FA; //  tertiary背景
+@border-color: #E5E6EB; // 边框颜色
+@text-primary: #333333; // 主文本
+@text-primary-good: #333;
+@text-secondary: #666666; // 次要文本
+@text-tertiary: #999999; // 辅助文本
+@text-disabled: #CCCCCC; // 禁用文本
+@border-color: #E5E5E5; // 边框颜色
+@border-light: #F0F0F0; // 浅边框
+@bg-color: #e4e9f0; // 页面背景
+@card-bg: #FFFFFF; // 卡片背景
+@success-color: #00C853; // 成功色
+@warning-color: #FFC107; // 警告色
+@warning-light: #FFF8E1; // 警告色浅色调
+@error-color: #F44336; // 错误色
+@primary-dark: #06AD56; // 主色深色版
+// 暗黑模式变量
+@card-bg-dark: #2D2D2D; // 暗黑模式卡片背景
+@text-primary-dark: #FFFFFF; // 暗黑模式主文本
+@text-secondary-dark: #AAAAAA; // 暗黑模式次要文本
+@border-color-dark: #444444; // 暗黑模式边框色
+@background-color: @bg-color; // 与现有bg-color保持一致
+@secondary-text: @text-tertiary; // 与现有text-tertiary保持一致
+@border-dark: #CCCCCC; // 深边框色
+
+@header-bar-height-ios: 90rpx;
+@header-bar-height-android: 150rpx;
+// 排版系统
+@font-size-mini: 20rpx; // 超小字体
+@font-size-xs: 24rpx; // 超小字体
+@font-size-base: 28rpx; // 基础字体大小
+@font-size-sm: @font-size-base; // 小字体
+@font-size-base-md: 30rpx;
+@font-size-md: 32rpx; // 中字体
+
+@font-size-lg: 36rpx; // 大字体
+@font-size-xl: 40rpx; // 大字体
+// 间距系统补充
+@margin-base: 16rpx; // 基础外边距
+@padding-base: 16rpx; // 基础内边距
+@padding-md: 32rpx; // 基础内边距
+@padding-lg: 48rpx; // 大内边距（与spacing-lg保持一致）
+
+// 组件尺寸补充
+@radius-base: 8rpx; // 基础圆角
+
+@line-height-sm: 1.2; // 小行高
+@line-height-md: 1.5; // 中行高
+@line-height-lg: 1.8; // 大行高
+
+// 间距系统
+@spacing-xs: 4rpx; // 极小间距
+@spacing-sm: 8rpx; // 小间距
+@spacing-sm-md: 14rpx;
+@spacing-md: 16rpx; // 中间距
+@spacing-lg: 24rpx; // 大间距
+@spacing-xl: 32rpx; // 超大间距
+@spacing-xxl: 96rpx; // 特大间距
+
+// 组件尺寸
+@header-height: 96rpx; // 头部高度
+@tabbar-height: 100rpx; // 底部tab高度
+@card-radius: 16rpx; // 卡片圆角
+@button-radius: 10rpx; // 按钮圆角
+@card-shadow: 0 6rpx 24rpx rgba(0, 0, 0, 0.06); // 卡片阴影
+@hover-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.1); // 悬停阴影
+
+// 动画时长
+@transition-fast: 200ms; // 快速动画
+@transition-normal: 300ms; // 正常动画
+@transition-slow: 500ms; // 慢速动画
+
+// 响应式断点
+@breakpoint-sm: 320px; // 小屏幕
+@breakpoint-md: 375px; // 中等屏幕
+@breakpoint-lg: 414px; // 大屏幕
+@breakpoint-xl: 768px; // 超大屏幕
+
+@border-radius-sm: 6px; // 小圆角
+@border-radius: 12px; // 标准圆角
+@border-radius-lg: 16px; // 大圆角
+@shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08); // 小阴影
+@shadow: 0 4px 16px rgba(0, 0, 0, 0.08); // 标准阴影
+@shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12); // 大阴影
+
+@search-bg: rgba(255, 255, 255, 0.8);
+@transition: all 0.3s ease; // 过渡效果
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; // 替代原center布局
+    justify-content: flex-start; // 默认从顶部开始布局
+    padding: @header-height 0 env(safe-area-inset-bottom) 0;
+    overflow-y: hidden;
+    will-change: transform;
+
+    @media (max-width: 600rpx) {
+        .container {
+            padding: 100rpx 0;
+        }
+    }
+}
+
+/* 全局右侧浮动菜单样式 */
+
+// 右侧浮动菜单动画
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20rpx);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 右侧浮动菜单样式 - 响应式优化版 */
+.right-float-menu {
+    position: fixed;
+    right: @spacing-md;
+    bottom: @spacing-xxl;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: @spacing-sm;
+    animation: fadeInUp @transition-normal ease-out;
+
+    // 小屏幕适配
+    @media (max-width: @breakpoint-sm) {
+        right: @spacing-xs;
+        bottom: @spacing-lg;
+        gap: @spacing-xs;
+    }
+
+    // 大屏幕适配
+    @media (min-width: @breakpoint-xl) {
+        right: @spacing-md;
+        bottom: @spacing-xl;
+    }
+}
+
+.right-float-menu>button {
+    width: 92rpx;
+    height: 92rpx;
+    border-radius: 50%;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all @transition-normal;
+    position: relative;
+    overflow: hidden;
+    // 解决iOS点击延迟问题
+    -webkit-tap-highlight-color: transparent;
+    // 适配鸿蒙系统触摸反馈
+    -harmony-tap-feedback-color: rgba(0, 0, 0, 0.1);
+
+    // 小屏幕适配
+    @media (max-width: @breakpoint-sm) {
+        width: 80rpx;
+        height: 80rpx;
+    }
+
+    // 大屏幕适配
+    @media (min-width: @breakpoint-xl) {
+        width: 100rpx;
+        height: 100rpx;
+    }
+}
+
+.share-image {
+    width: 52rpx;
+    height: 52rpx;
+    text-align: start;
+    z-index: 1;
+    // 确保图片在不同系统上正确渲染
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    // 小屏幕适配
+    @media (max-width: @breakpoint-sm) {
+        width: 44rpx;
+        height: 44rpx;
+    }
+
+    // 大屏幕适配
+    @media (min-width: @breakpoint-xl) {
+        width: 56rpx;
+        height: 56rpx;
+    }
+}
+
+.right-float-menu>view {
+    width: 92rpx;
+    height: 92rpx;
+    border-radius: 50%;
+    background: @card-bg;
+    box-shadow: @card-shadow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all @transition-normal;
+    position: relative;
+    overflow: hidden;
+    // 解决iOS点击延迟问题
+    -webkit-tap-highlight-color: transparent;
+    // 适配鸿蒙系统触摸反馈
+    -harmony-tap-feedback-color: rgba(0, 0, 0, 0.1);
+
+    // 小屏幕适配
+    @media (max-width: @breakpoint-sm) {
+        width: 80rpx;
+        height: 80rpx;
+    }
+
+    // 大屏幕适配
+    @media (min-width: @breakpoint-xl) {
+        width: 100rpx;
+        height: 100rpx;
+    }
+}
+
+.right-float-menu>view>image {
+    width: 52rpx;
+    height: 52rpx;
+    z-index: 1;
+    // 确保图片在不同系统上正确渲染
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    // 小屏幕适配
+    @media (max-width: @breakpoint-sm) {
+        width: 44rpx;
+        height: 44rpx;
+    }
+
+    // 大屏幕适配
+    @media (min-width: @breakpoint-xl) {
+        width: 56rpx;
+        height: 56rpx;
+    }
+}
+
+/* 暗黑主题下的右侧浮动菜单样式 */
+.right-float-menu.dark-theme>view {
+    background: #2D2D2D;
+    box-shadow: 0 6rpx 24rpx rgba(0, 0, 0, 0.2);
+}
+
+page {
+    overflow-y: hidden;
+    height: 100vh;
+    --top-navbar-height-android: @header-bar-height-android;
+    --top-navbar-heigth-ios: @header-bar-height-ios;
+    padding-bottom: @spacing-xxl;
+}
+
+.empty-page {
+    font-size: @font-size-md;
+    padding: @spacing-lg;
+    text-align: center;
+    margin: @spacing-lg;
+}
+
+.submit-btn {
+    height: 100rpx;
+    padding-bottom: 120rpx;
+    padding-top: 20rpx;
+    margin-bottom: 120rpx;
+
+    &>button {
+        background: #07C160;
+        color: white;
+        border-radius: 10rpx;
+        box-shadow: 0 4rpx 12rpx rgba(7, 193, 96, 0.3);
+        transition: all 300ms;
+    }
+}
+
+.submit-btn.disable {
+    background-color: #e5e5e5;
+    color: #999;
+}
+
+.submit-btn.enable {
+    background-color: #07c160;
+    color: #fff;
+}
+
+.footer {
+    padding-bottom: 100rpx;
+}

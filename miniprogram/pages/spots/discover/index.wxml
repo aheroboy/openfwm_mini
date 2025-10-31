@@ -1,0 +1,102 @@
+<view class="container">
+  <navigation-bar title="钓点详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+  <view class="spot-pics-info">
+    <image src="{{spot.pics[0]}}" data-pics="{{spot.pics}}" bind:tap="onHarvestPicClicked">
+    </image>
+  </view>
+  <view class="spot-basic-info">
+    <view class="spot-name">
+      {{spot.name}}
+    </view>
+    <view class="spot-status">
+      <view>
+        <label>状态:</label>
+        <text>{{!!!spot.state?'正常':'无效'}}</text>
+      </view>
+      <view>
+        <label>等级:</label>
+        <text data-lvl="{{spot.lvl}}">{{spot.lvl.name}}</text>
+      </view>
+      <view>
+        <label>保密:</label>
+        <text data-secret-lvl="{{spot.secret}}">{{!!spot.secret?'秘密':'公开'}}</text>
+      </view>
+      <view>
+        <label>创建人:</label>
+        <text>{{spot.createdByName}}</text>
+      </view>
+      <label>更新日期:</label>
+      <text style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{spot.updatedAt}}</text>
+    </view>
+  </view>
+  <view class="spot-body">
+    <view class="spot-spec">
+      <view>
+        <label>钓点类型:</label>
+        <view>
+          <block data-spec="{{item}}" wx:for="{{spot.spotTypes}}" wx:for-item="item" wx:key="id">
+            <text data-val="{{item}}">{{item.name}}</text>
+          </block>
+        </view>
+      </view>
+      <view>
+        <label>
+          垂钓鱼类:
+        </label>
+        <view>
+          <block wx:for="{{spot.fishTypes}}" wx:for-item="item" data-fish="{{item}}" wx:key="type">
+            <text>{{item.name}}</text>
+          </block>
+        </view>
+      </view>
+      <view>
+        <label>水域类型:</label>
+        <view>
+          <text data-water="{{spot.waterType}}">{{spot.waterType.name}}</text>
+        </view>
+      </view>
+      <view>
+        <label>是否收费:</label>
+        <view>
+          <text>{{!!spot.isFree ?'是':'否'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="spot-statistics">
+      <view>
+        <label>人数:</label><text>{{spot.visitCnt== null ? 0 : spot.visitCnt}}</text>
+      </view>
+      <view>
+        <label>评分:</label><text> {{spot.score == null ? 0 : spot.score}}</text>
+      </view>
+      <view>
+        <label>推荐:</label><text>{{spot.recLvl == null ? 0 : spot.recLvl}}</text>
+      </view>
+      <view>
+        <label>爆护:</label><text>{{spot.fullHarvestRate == null ? 0:spot.fullHarvestRate}}</text>
+      </view>
+      <view>
+        <label>正常:</label><text>{{spot.middleHarvestRate == null ? 0 : spot.middleHarvestRate}}</text>
+      </view>
+      <view>
+        <label>空军:</label><text>{{spot.lowHarvestRate == null ? 0 :spot.lowHarvestRate}}</text>
+      </view>
+    </view>
+
+    <view class="spot-description">
+      <view class="desc-title">钓点描述：</view>
+      <text>
+      {{spot.description}}
+      </text>
+    </view>
+  </view>
+  
+</view>
+<view class="right-float-menu">
+    <view wx:if="{{spot.createdBy != loginUserId}}" data-tooltip="收藏钓点">
+      <image src="../../../images/coll.png" bind:tap="onCollectClicked" class="spot-op-collect"></image>
+    </view>
+    <view data-tooltip="导航到钓点">
+      <image src="../../../images/go.png" bind:tap="onNavigatorClicked" class="spot-op-view"></image>
+    </view>
+  </view>

@@ -1,0 +1,21 @@
+<!-- 右侧内容展示区 -->
+<scroll-view class="spot-grid-container {{ios?'ios':'android'}}" scroll-y="true" bindscrolltolower="onSpotScrollToLower" lower-threshold="10">
+    <view wx:for="{{spotData}}" wx:key="id" class="spot-item" wx:for-item="item" bind:tap="goViewSpot" data-id="{{item.id}}">
+        <!-- 第一行：名称 -->
+
+        <view class="spot-name">{{item.name}}</view>
+        <!-- 第三行：等级、是否私有、访问量、收藏量、更新时间 -->
+        <view style="position: relative;">
+            <view class="spot-meta" style="float: left;">
+                <view class="city-name">{{item.city}}</view>
+                <view><text>{{!item.isPrivate ? '秘密钓点' : '开放钓点'}}</text></view>
+                <view wx:if="{{!item.isPrivate && !item.isCollected}}"><text>积分设置：{{item.creditVal ? item.creditVal : '默认'}}</text></view>
+            </view>
+        </view>
+    </view>
+    <!-- 加载状态 -->
+    <view class="loading-status">
+        <view wx:if="{{isSpotLoading}}" class="loading">加载中...</view>
+        <view wx:elif="{{hasSpotMore === false}}" class="no-more">没有更多数据了</view>
+    </view>
+</scroll-view>

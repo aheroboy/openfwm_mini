@@ -1,0 +1,17 @@
+{
+  "name": "openfwm_mini",
+  "version": "1.0.0",
+  "description": "微信小程序 - 钓鱼爱好者社区，提供钓点查询、钓鱼情况实时分享等功能",
+  "scripts": {},
+  "keywords": [
+    "wechat-miniprogram",
+    "fishing",
+    "fishing-spots",
+    "angler-community"
+  ],
+  "author": "开源贡献者",
+  "license": "GPLv3",
+  "devDependencies": {
+    "miniprogram-api-typings": "^2.11.0-1"
+  }
+}

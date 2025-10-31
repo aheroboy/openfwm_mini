@@ -1,0 +1,54 @@
+<!-- pages/anybiting/index.wxml -->
+<view class="anybiting-container">
+    <!-- 城市选择器遮罩层 -->
+    <view class="city-selector-mask" wx:if="{{showCitySelector}}" bindtap="onCloseCitySelector"></view>
+
+    <!-- 城市选择器面板 -->
+    <view class="city-selector-panel" wx:if="{{showCitySelector}}">
+        <view class="city-selector-header">
+            <view class="city-selector-title">选择城市</view>
+            <view class="city-selector-close" bindtap="onCloseCitySelector">✕</view>
+        </view>
+
+        <!-- 搜索框 -->
+        <view class="city-search-box">
+            <view class="search-input-wrapper">
+                <image class="search-icon" src="../../images/search-green.png" mode="aspectFit"></image>
+                <input type="text" placeholder="请输入城市名称搜索" value="{{searchKeyword}}" bindinput="onSearchKeywordInput" placeholder-class="search-placeholder" />
+            </view>
+        </view>
+
+        <!-- 当前城市 -->
+        <view class="city-current" wx:if="{{city}}">
+            <view class="section-title">当前城市</view>
+            <view class="city-item current-city" data-code="{{city.cityCode}}" data-city="{{city.city}}" bindtap="onSelectCity">{{city.city}}</view>
+        </view>
+        <!-- 搜索结果 -->
+        <view class="city-search-result" wx:if="{{searchResult.length > 0}}">
+            <view class="section-title">搜索结果</view>
+            <view class="city-list">
+                <view class="city-item" wx:for="{{searchResult}}" wx:key="cityCode" data-code="{{item.cityCode}}" data-city="{{item.city}}" bindtap="onSelectCity">{{item.city}}</view>
+            </view>
+        </view>
+
+    </view>
+    <!-- 聊天容器 -->
+    <view class="chat-container">
+        <!-- 消息列表（仅此处可滚动） -->
+        <scroll-view class="message-list" scroll-y="true" scroll-with-animation="true" bindscrolltolower="loadBackwardMessagesByScore" bindscrolltoupper="loadForwardMessageByScore" refresher-enabled="{{true}}" lower-threshold="30" upper-threshold="30" bindrefresherrefresh="onPullDownRefresh" refresher-triggered="{{isRefreshing}}">
+            <view class="grid-container">
+                <block wx:for="{{circleMessages}}" wx:for-item="msg" wx:key="id">
+                    <show-harvest message="{{msg}}" wx:if='{{msg.subtype == "EVT_SHOW_H"}}'></show-harvest>
+                    <new-spot message="{{msg}}" wx:if='{{msg.subtype == "EVT_N_SPOT"}}'></new-spot>
+                </block>
+            </view>
+
+            <view class="footer"></view>
+        </scroll-view>
+        <view class="right-float-menu">
+            <view data-tooltip="附近钓点">
+                <image mode="aspectFit" bind:tap="onSwitchCityClicked" src="../../images/anybiting/switch-city.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,126 @@
+/* pages/my/index.less */
+/* 基于全局设计系统的个人中心页面样式 */
+
+// 导入全局样式变量
+@import '../../app.less';
+@menu-height: 90rpx;
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 头部区域样式 */
+.header {
+  display: flex;
+  align-items: flex-start;
+  padding: @spacing-md @spacing-lg;
+  background-color: @card-bg;
+  position: relative;
+  margin-bottom: 1rpx;
+}
+
+.header.ios {
+  height: calc(@header-bar-height-ios + @spacing-xxl)
+}
+
+.header.android {
+  height: calc(@header-bar-height-android)
+}
+@avator-size:90rpx;
+.user-info {
+  display: flex;
+  align-items: flex-end;
+  image {
+    width: @avator-size;
+    height: @avator-size;
+    border-radius: 50%;
+    margin-right: @spacing-sm;
+    border: 2rpx solid @border-light;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+
+  text {
+    font-size: @font-size-md;
+    color: @text-primary;
+    max-width: 220rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 80rpx;
+    margin-bottom: @spacing-xs;
+  }
+}
+.user-info.android{
+  padding-top: calc(calc(@header-bar-height-android) / 2 - (@avator-size / 4));
+}
+.user-info.ios {
+  padding-top: calc(calc(@header-bar-height-ios + @spacing-xxl) / 2 - (@avator-size / 4));
+}
+/* 内容区域样式 */
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: @card-bg;
+}
+
+/* 顶部菜单样式 */
+.menu {
+  width: 100%;
+  height: @menu-height;
+  border-bottom: 2rpx solid @border-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu-item {
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: @font-size-sm;
+  color: @text-tertiary;
+  position: relative;
+  transition: all @transition-normal;
+  padding: 0 @spacing-sm;
+}
+
+.menu-item.active {
+  color: @primary-color;
+  background-color: @card-bg;
+  font-weight: 600;
+}
+
+.menu-item.active::after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rpx;
+  height: 40rpx;
+  background-color: @primary-color;
+  border-radius: 0 @button-radius @button-radius 0;
+}
+
+/* 右侧内容区域样式 */
+.content {
+  flex: 1;
+  padding: @spacing-md;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-title {
+  font-size: @font-size-lg;
+  font-weight: 600;
+  color: @text-primary;
+  margin-bottom: @spacing-md;
+  padding-bottom: @spacing-sm;
+  border-bottom: 2rpx solid @border-light;
+}

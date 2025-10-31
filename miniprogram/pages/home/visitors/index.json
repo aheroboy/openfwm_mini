@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "访客记录",
+  "component": true,
+  "styleIsolation": "apply-shared",
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/index"
+  }
+}

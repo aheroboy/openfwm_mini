@@ -1,0 +1,144 @@
+// 导航栏基础样式
+@import "../../app.less";
+.fishing-nav {
+  --text-color: #000;
+  --background-color: #fff;
+  --active-opacity: 0.7;
+  --border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  --back-icon-size: 24px;
+  --title-font-size: 20px;
+  --title-font-weight: 600;
+  --btn-padding: 16px;
+
+  position: relative;
+  width: 100%;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border-bottom: var(--border-bottom);
+  box-sizing: border-box;
+}
+
+// Android设备适配
+.fishing-nav.android {
+  --height: @header-bar-height-android;
+}
+.fishing-nav.ios{
+  --height: @header-bar-height-ios;
+}
+
+// 内容容器
+.fishing-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--height);
+  padding-top: env(safe-area-inset-top);
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  height: calc(var(--height) + env(safe-area-inset-top));
+}
+
+// 左侧区域
+.fishing-nav__left {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+}
+
+// 中间标题区域
+.fishing-nav__center {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  padding: 0 26px 16px 0;
+  box-sizing: border-box;
+}
+
+// 右侧区域
+.fishing-nav__right {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+}
+
+// 导航按钮
+.fishing-nav__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-padding);
+  margin: calc(-1 * var(--btn-padding));
+  transition: opacity 0.2s ease;
+}
+
+// 按钮激活状态
+.fishing-nav__btn--active {
+  opacity: var(--active-opacity);
+}
+
+// 返回图标
+.back-icon {
+  width: var(--back-icon-size);
+  height: var(--back-icon-size);
+}
+
+// 返回文本
+.back-text {
+  margin-left: 4px;
+  font-size: 14px;
+}
+
+// 首页图标
+.home-icon {
+  width: var(--back-icon-size);
+  height: var(--back-icon-size);
+}
+
+// 标题文本
+.nav-title {
+  font-size: @font-size-md;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+// 加载指示器
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 加载动画
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+// 旋转动画
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 自定义样式覆盖
+.fishing-nav.custom {
+  --text-color: #fff;
+  --background-color: #1aad19;
+  --border-bottom: none;
+}

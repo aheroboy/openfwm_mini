@@ -1,0 +1,365 @@
+/*
+   首页样式 - 现代化设计方案
+   基于全局设计系统
+====================== */
+
+// 导入全局样式变量
+@import '../../app.less';
+
+/* 页面容器 */
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: @bg-color;
+  // 添加微妙的背景纹理
+  background-image: radial-gradient(@primary-light 1px, transparent 1px);
+  background-size: 30rpx 30rpx;
+  // 禁止滚动
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.body-container.ios {
+  height: calc(100vh - @header-bar-height-ios);
+}
+
+.body-container.android {
+  height: calc(100vh - @header-bar-height-android);
+}
+
+
+/* 钓点列表容器 */
+.spot-list {
+  padding: 0 @spacing-xl 250rpx @spacing-xl;
+  margin-bottom: 100rpx;
+}
+
+/* 基础卡片样式 */
+.spot-card {
+  border-radius: @card-radius;
+  padding: @spacing-md;
+  margin-bottom: @spacing-lg;
+  box-shadow: @card-shadow;
+  transition: @transition;
+  overflow: hidden;
+  position: relative;
+  background-color: @card-bg;
+}
+
+/* 主要钓点卡片 */
+.spot-basic {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 钓点图片容器 */
+.spot-pic-container {
+  width: calc(100% + 2*@spacing-md);
+  height: 400rpx;
+  border-radius: @card-radius @card-radius 0 0;
+  overflow: hidden;
+  position: relative;
+  margin: -@spacing-md -@spacing-md @spacing-md -@spacing-md;
+  padding: 0;
+  box-sizing: border-box;
+  right: 0;
+  left: 0;
+}
+
+.spot-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform @transition-slow;
+}
+
+.spot-card:hover .spot-pic {
+  transform: scale(1.03);
+}
+
+/* 内容主体 */
+.content-body {
+  flex: 1;
+}
+
+/* 钓点标题 */
+.spot-title {
+  font-size: @font-size-xl;
+  font-weight: bold;
+  color: @text-primary;
+  margin-bottom: @spacing-sm;
+  overflow-wrap: break-word;
+  padding: @spacing-sm;
+  white-space: normal;
+  line-height: @line-height-md;
+}
+
+/* 钓点信息详情 */
+.spot-info-detail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: @spacing-xs;
+  margin-bottom: @spacing-md;
+  font-size: @font-size-sm;
+  color: @text-secondary;
+
+  view {
+    display: flex;
+    flex-direction: column;
+    text {
+      font-size: @font-size-mini;
+      color: @text-tertiary;
+    }
+  }
+}
+
+/* 钓点属性容器 */
+.spot-prop-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: @spacing-sm;
+  margin-bottom: @spacing-sm;
+}
+
+/* 属性卡片 */
+.spot-prop {
+  display: flex;
+  flex-direction: column;
+  padding: @spacing-md;
+  border-radius: @card-radius;
+  background-color: @card-bg;
+  box-shadow: @card-shadow;
+
+  label {
+    font-size: @font-size-sm;
+    color: @text-tertiary;
+    margin-bottom: @spacing-xs;
+  }
+
+  .prop-value {
+    font-size: @font-size-md;
+    color: @text-primary;
+    font-weight: 500;
+  }
+
+  .spec,
+  .fishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: @spacing-xs;
+  }
+}
+
+/* 评论区域 */
+.comment-section {
+  .section-title {
+    font-size: @font-size-lg;
+    font-weight: bold;
+    color: @text-primary;
+    margin-bottom: @spacing-sm;
+    display: block;
+  }
+
+  .comment-item {
+    padding: @spacing-md @spacing-sm-md;
+    border-bottom: 1rpx solid @border-color;
+  }
+  
+  .comment-note {
+    font-size: @font-size-md;
+    color: @text-tertiary;
+    margin-bottom: @spacing-xl;
+    padding-bottom: @spacing-md;
+    display: flex;
+    flex-wrap: wrap;
+    gap: @spacing-sm;
+  }
+
+  .comment-content {
+    font-size: @font-size-md;
+    color: @text-secondary;
+    line-height: @line-height-md;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}
+
+/* 空状态样式 */
+.empty-spots {
+  padding: @spacing-xl;
+  text-align: center;
+  color: @text-tertiary;
+  background: @card-bg;
+  border-radius: @card-radius;
+  margin: @spacing-md;
+  box-shadow: @card-shadow;
+
+  text {
+    display: block;
+    margin-bottom: @spacing-md;
+    font-size: @font-size-md;
+  }
+
+  button {
+    margin-top: @spacing-md;
+    background: @primary-color;
+    color: white;
+    border-radius: @button-radius;
+    padding: @spacing-xs @spacing-md;
+    font-size: @font-size-sm;
+    transition: @transition;
+
+    &:hover {
+      background: @primary-dark;
+      transform: translateY(-2rpx);
+      box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* 加载状态 */
+.loading-state {
+  padding-bottom: 100rpx;
+  margin-bottom: 100rpx;
+  text-align: center;
+
+  image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 auto;
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: @breakpoint-md) {
+  .spot-info-detail {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spot-info-detail view:nth-child(1),
+  .spot-info-detail view:nth-child(2) {
+    grid-column: span 1;
+  }
+
+  .spot-info-detail view:nth-child(3) {
+    grid-column: span 2;
+  }
+
+  .spot-prop-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.spot-card {
+  animation: fadeIn @transition-normal ease-out forwards;
+}
+
+.spot-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.spot-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.spot-card:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.spot-card:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+/* 右侧浮动菜单样式调整 */
+.right-float-menu {
+  right: @spacing-md;
+  bottom: @spacing-xxl;
+  gap: @spacing-sm;
+
+  view {
+    width: 92rpx;
+    height: 92rpx;
+    border-radius: 50%;
+    background: @card-bg;
+    box-shadow: @card-shadow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: @transition;
+    position: relative;
+    overflow: hidden;
+
+    image {
+      width: 52rpx;
+      height: 52rpx;
+      z-index: 1;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: @hover-shadow;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+/* 暗黑模式适配 */
+.dark-theme {
+  .page-container {
+    background-color: #1F1F1F;
+    background-image: none;
+  }
+  
+  .spot-card {
+    background-color: @card-bg-dark;
+    color: @text-primary-dark;
+  }
+  
+  .spot-title {
+    color: @text-primary-dark;
+  }
+  
+  .spot-info-detail {
+    color: @text-secondary-dark;
+    text {
+      color: @text-tertiary;
+    }
+  }
+  
+  .spot-prop {
+    background-color: @card-bg-dark;
+    label {
+      color: @text-tertiary;
+    }
+    .prop-value {
+      color: @text-primary-dark;
+    }
+  }
+  
+  .comment-section {
+    .section-title {
+      color: @text-primary-dark;
+    }
+    .comment-note {
+      color: @text-tertiary;
+    }
+    .comment-content {
+      color: @text-secondary-dark;
+    }
+  }
+
+}

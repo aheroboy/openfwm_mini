@@ -1,0 +1,33 @@
+@import '../../../app.less';
+.agreement-container {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  }
+
+  .content-box {
+    padding-top: 30rpx;
+    white-space: pre-line;
+    padding-left: 16rpx;
+    padding-right: 16rpx;
+    box-sizing:border-box;
+    font-size: 28rpx;
+    line-height: 1.6;
+
+  }
+  .content-box.android {
+    height: calc(100vh - @header-bar-height-android);
+  }
+  .content-box.ios {
+      height: calc(100vh - @header-bar-height-ios);
+  }
+  .footer {
+    background: #fff;
+    padding-bottom: 200rpx;
+    margin-bottom: 100rpx;
+    .agree-btn {
+      background: #07C160;
+      color: #fff;
+      border-radius: 50rpx;
+    }
+  }

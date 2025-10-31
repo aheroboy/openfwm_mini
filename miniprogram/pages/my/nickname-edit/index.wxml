@@ -1,0 +1,26 @@
+
+<navigation-bar title="用户名修改" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+  <view class="form-item">
+    <text class="label">当前昵称</text>
+    <text class="current-nickname">{{currentNickname}}</text>
+  </view>
+  
+  <view class="form-item">
+    <text class="label">新昵称</text>
+    <input 
+      placeholder="请输入新昵称" 
+      value="{{newNickname}}"
+      bindinput="onInputChange"
+      maxlength="20"
+    />
+  </view>
+
+  <button 
+    class="save-btn" 
+    bindtap="saveNickname"
+    disabled="{{!newNickname || newNickname === currentNickname}}"
+  >
+    保存
+  </button>
+</view>

@@ -1,0 +1,110 @@
+/* pages/home/visitors/index.less */
+// 导入全局样式变量
+@import '../../../app.less';
+
+.visit-container {
+  height: 100vh;
+  background-color: @bg-primary
+}
+
+.visitor-list {
+  display: flex;
+  flex-direction: colum;
+  position: relative;
+  overflow-y: auto;
+}
+
+.visitor-list.ios {
+  height: calc(100vh - @header-bar-height-ios);
+}
+
+.visitor-list.android {
+  height: calc(100vh - @header-bar-height-android);
+}
+
+.visitor-card {
+  background-color: @card-bg;
+  border-radius: @card-radius;
+  box-shadow: @card-shadow;
+  padding: @spacing-xl;
+  margin: @spacing-xs @spacing-xl @spacing-xs @spacing-xl;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: @spacing-md;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: @spacing-sm;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: @font-size-md;
+  font-weight: 500;
+  color: @text-primary;
+}
+
+.visit-time {
+  font-size: @font-size-sm;
+  color: @text-secondary;
+}
+
+.image-container {
+  width: 100%;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: @spacing-sm;
+}
+
+.preview-image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: @radius-base;
+  object-fit: cover;
+  background-color: @border-light;
+}
+.harvest-fish {
+  display: flex;
+  flex-direction: row;
+  padding:@spacing-md;
+  &> label {
+    font-size: @font-size-sm;
+    color: @text-tertiary;
+    align-items: center;
+    margin-bottom: @spacing-xs;
+    padding:@spacing-xs;
+  }
+  &> text {
+    font-size: @font-size-sm;
+    align-items: center;
+    color: @text-primary;
+    padding:@spacing-xs;
+    margin-bottom: @spacing-xs;
+
+    font-weight: 500
+  }
+}
+
+.harvest-link {
+    padding-top: @spacing-md;
+    color: #1890ff;
+    width: 100%;
+    height: 60rpx;
+    text-align: end;
+    line-height: 60rpx;
+  }

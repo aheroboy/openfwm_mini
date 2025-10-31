@@ -1,0 +1,24 @@
+<view class="main">
+  <!-- 头部区域 -->
+  <view class="header {{ios?'ios':'android'}}">
+    <view class="user-info {{ios? 'ios':'android'}}">
+      <image class="avatar" bindtap="navigateToUserEdit" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <text class="username">{{userInfo.nickname || '钓友'}}</text>
+    </view>
+  </view>
+
+  <!-- 内容区域 -->
+  <view class="content-container">
+    <!-- 顶部菜单 -->
+    <view class="menu">
+      <view class="menu-item {{currentTab === 'credit' ? 'active' : ''}}" bindtap="switchTab" data-tab="credit">
+        <text>积分</text>
+      </view>
+      <view class="menu-item {{currentTab === 'favorites' ? 'active' : ''}}" bindtap="switchTab" data-tab="favorites">
+        <text>收藏</text>
+      </view>
+    </view>
+    <spot-grid wx:if="{{currentTab === 'favorites'}}"  favorite="{{true}}"></spot-grid>
+    <credit wx:if="{{currentTab == 'credit'}}"></credit>
+  </view>
+</view>

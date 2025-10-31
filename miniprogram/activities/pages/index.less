@@ -1,0 +1,87 @@
+/* 移除 Vant 样式引入，仅保留自定义样式 */
+
+/* 主容器：全屏、居中、背景色 */
+.upcoming-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F5F7FA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40rpx 20rpx;
+    box-sizing: border-box;
+  }
+  
+  /* 顶部图标区：圆形背景+居中 */
+  .upcoming-icon {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background-color: rgba(78, 110, 242, 0.1); /* 淡蓝色背景，与原设计一致 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30rpx;
+  }
+  
+  /* 主标题：字体大小+加粗+颜色 */
+  .upcoming-title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #1D2129;
+    margin-bottom: 16rpx;
+  }
+  
+  /* 副标题：浅色+小字体 */
+  .upcoming-subtitle {
+    font-size: 24rpx;
+    color: #86909C;
+    margin-bottom: 80rpx;
+    text-align: center;
+    line-height: 36rpx;
+  }
+  
+  /* 补充说明：灰色+更小字体 */
+  .upcoming-desc {
+    font-size: 20rpx;
+    color: #B8C0CC;
+    margin-bottom: 120rpx;
+  }
+  
+  /* 底部反馈按钮：蓝色背景+圆角+内边距 */
+  .upcoming-footer {
+    position: absolute;
+    bottom: 80rpx;
+    width: 80%;
+  }
+  
+  .feedback-btn {
+    width: 100%;
+    height: 80rpx;
+    background-color: #4E6EF2;
+    color: #FFFFFF;
+    font-size: 24rpx;
+    border-radius: 40rpx; /* 圆角按钮 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 按钮内图标：与文字间距 */
+  .btn-icon {
+    margin-right: 12rpx;
+  }
+  
+  /* 去除小程序 button 自带的默认边框和背景 */
+  .feedback-btn::after {
+    border: none; /* 清除默认边框 */
+  }
+  
+  /* 优化按钮按压效果（可选） */
+  .feedback-btn {
+    background-image: none; /* 清除默认渐变背景 */
+  }
+  .feedback-btn:active {
+    background-color: #3A5ED9; /* 按压时深色反馈，提升交互感 */
+  }

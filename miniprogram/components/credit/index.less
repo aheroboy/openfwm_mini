@@ -1,0 +1,436 @@
+
+  
+// 钓鱼积分组件样式 - 基于项目设计系统
+
+// 引入全局变量
+@import '../../app.less';
+
+.container {
+  background-color: @card-bg;
+  overflow: hidden;
+  border-radius: @card-radius;
+  box-shadow: @card-shadow;
+}
+
+@menu-height: 90rpx;
+.container.ios {
+  height: calc(100vh - @header-bar-height-ios - @menu-height);
+}
+.container.android {
+  height: calc(100vh - @header-bar-height-android - @menu-height);
+}
+
+/* 1. 当前用户等级区域 - 钓鱼主题设计 */
+.level-header {
+  background: linear-gradient(135deg, @primary-color 0%, @primary-light 100%);
+  padding: @spacing-xl;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 钓鱼主题装饰元素 */
+.level-header::before {
+  content: "🎣";
+  position: absolute;
+  font-size: 80px;
+  opacity: 0.08;
+  top: -20px;
+  right: -20px;
+  transform: rotate(25deg);
+}
+
+.level-header::after {
+  content: "🐟";
+  position: absolute;
+  font-size: 60px;
+  opacity: 0.08;
+  bottom: -15px;
+  left: 20px;
+  transform: rotate(-15deg);
+}
+
+.level-badge {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto @spacing-md;
+  position: relative;
+  border-radius: 50%;
+  background: linear-gradient(135deg, white 0%, #f5f5f5 100%);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.12), inset 0 4rpx 8rpx rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform @transition-normal ease;
+  overflow: hidden;
+}
+
+.level-badge:active {
+  transform: scale(0.95);
+}
+
+.level-name {
+  font-size: @font-size-lg;
+  font-weight: bold;
+  color: white;
+  margin-bottom: @spacing-xs;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.level-desc {
+  font-size: @font-size-base;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: @spacing-sm;
+}
+
+/* 2. 积分信息区域 */
+.points-info {
+  padding: 0 @spacing-lg @spacing-lg;
+}
+
+.points-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: @spacing-md;
+}
+
+.points-item {
+  background-color: @bg-tertiary;
+  border-radius: @border-radius;
+  padding: @spacing-lg;
+  text-align: center;
+  transition: all @transition-normal ease;
+  box-shadow: @shadow-sm;
+}
+
+.points-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.points-label {
+  font-size: @font-size-base;
+  color: @text-secondary;
+  margin-bottom: @spacing-xs;
+}
+
+.points-value {
+  font-size: @font-size-xl;
+  font-weight: bold;
+  color: @primary-color;
+}
+
+/* 3. 下一级进度区域 */
+.progress-area {
+  padding: @spacing-lg;
+  border-top: 1px solid @border-color;
+  background-color: @bg-tertiary;
+}
+
+.progress-title {
+  font-size: @font-size-md;
+  font-weight: 600;
+  color: @text-primary;
+  margin-bottom: @spacing-md;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-bar-container {
+  height: 16px;
+  background-color: @border-color;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: @spacing-md;
+  box-shadow: inset 0 2rpx 4rpx rgba(0, 0, 0, 0.08);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 65%; /* 默认进度示例 */
+  background: linear-gradient(90deg, @primary-color 0%, @success-color 100%);
+  border-radius: 8px;
+  transition: width @transition-slow ease;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-remaining {
+  font-size: @font-size-base;
+  color: @text-secondary;
+  text-align: center;
+  padding: @spacing-sm 0;
+  background-color: white;
+  border-radius: @border-radius-sm;
+  border: 1px solid @border-color;
+}
+
+/* 4. 功能按钮区域 */
+.action-buttons {
+  padding: @spacing-md;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: @spacing-md;
+  border-top: 1px solid @border-color;
+}
+
+.action-btn {
+  background-color: @primary-light;
+  border: none;
+  border-radius: @border-radius;
+  padding: @spacing-md 0;
+  font-size: @font-size-base;
+  font-weight: 500;
+  color: @primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: @spacing-xs;
+  cursor: pointer;
+  transition: all @transition-fast ease;
+  box-shadow: @shadow-sm;
+}
+
+.action-btn:hover {
+  background-color: #d9f2e5;
+  transform: translateY(-1px);
+  box-shadow: 0 6rpx 16rpx rgba(7, 193, 96, 0.15);
+}
+
+.action-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2rpx 8rpx rgba(7, 193, 96, 0.1);
+}
+
+.btn-levels::before {
+  content: "🎯";
+}
+
+.btn-points-list::before {
+  content: "📚";
+}
+
+/* 5. 积分列表区域 */
+.points-list-section {
+  padding: @spacing-lg;
+  border-top: 1px solid @border-color;
+  padding-bottom: 150rpx;
+}
+
+.section-title {
+  font-size: @font-size-md;
+  font-weight: 600;
+  color: @text-primary;
+  margin-bottom: @spacing-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.more-link {
+  font-size: @font-size-base;
+  color: @primary-color;
+  text-decoration: none;
+  transition: opacity @transition-fast ease;
+}
+
+.more-link:active {
+  opacity: 0.7;
+}
+
+.points-list {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.points-item-record {
+  display: flex;
+  justify-content: space-between;
+  padding: @spacing-md 0;
+  border-bottom: 1px dashed @border-light;
+  transition: background-color @transition-fast ease;
+}
+
+.points-item-record:active {
+  background-color: @bg-tertiary;
+}
+
+.record-desc {
+  font-size: @font-size-base;
+  color: @text-secondary;
+  flex: 1;
+  margin-right: @spacing-md;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.record-points {
+  font-size: @font-size-base;
+  font-weight: 500;
+  color: @success-color; /* 正积分绿色 */
+}
+
+.record-points.minus {
+  color: @danger-color; /* 负积分红色 */
+}
+
+/* 6. 积分花费设置区域 */
+.points-spend-setting {
+  padding: @spacing-lg;
+  border-top: 1px solid @border-color;
+  padding-bottom: 100rpx;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: @spacing-md 0;
+}
+
+.setting-label {
+  font-size: @font-size-base;
+  color: @text-primary;
+}
+
+.setting-desc {
+  font-size: @font-size-xs;
+  color: @text-tertiary;
+  margin-top: @spacing-xs;
+}
+
+/* 自定义开关样式 */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+}
+
+/* 无记录状态样式 */
+.no-records {
+  text-align: center;
+  padding: @spacing-xl 0;
+  color: @text-tertiary;
+}
+
+.no-records-text {
+  font-size: @font-size-base;
+  color: @text-tertiary;
+}
+
+/* 暗黑模式适配 */
+page[theme="dark"] {
+  .container {
+    background-color: @card-bg-dark;
+  }
+  
+  .level-header {
+    background: linear-gradient(135deg, @primary-dark 0%, rgba(26, 86, 168, 0.8) 100%);
+  }
+  
+  .points-item {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .progress-area {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .progress-bar-container {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .progress-remaining {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: @text-secondary-dark;
+  }
+  
+  .action-btn {
+    background-color: rgba(7, 193, 96, 0.2);
+    color: @primary-color;
+  }
+  
+  .action-btn:hover {
+    background-color: rgba(7, 193, 96, 0.3);
+  }
+  
+  .section-title,
+  .setting-label {
+    color: @text-primary-dark;
+  }
+  
+  .record-desc,
+  .points-label,
+  .no-records-text {
+    color: @text-secondary-dark;
+  }
+  
+  .points-item-record {
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .points-item-record:active {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* 响应式调整 */
+@media (max-width: @breakpoint-sm) {
+  .points-grid {
+    gap: @spacing-sm;
+  }
+  
+  .action-buttons {
+    gap: @spacing-sm;
+  }
+  
+  .level-name {
+    font-size: @font-size-md;
+  }
+  
+  .points-value {
+    font-size: @font-size-lg;
+  }
+}
+
+/* 自定义滚动条样式 */
+.container::-webkit-scrollbar {
+  width: 8rpx;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: @bg-tertiary;
+  border-radius: 4rpx;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4rpx;
+  transition: background-color @transition-normal ease;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}

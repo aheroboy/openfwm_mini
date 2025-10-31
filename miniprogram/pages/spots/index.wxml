@@ -1,0 +1,22 @@
+<view class="page-body">
+    <view class="page-section page-section-gap">
+        <map id="spotMap" style="width: 100%; height: 100vh;" scale="15" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" covers="{{covers}}" show-location bind:markertap="onSpotClicked" bindregionchange="onRegionChange" bind:labeltap="onSpotClicked" enable-satellite="{{satellite}}" bindtap="onMapClicked" polyline="{{navLine}}">
+        </map>
+
+        <view class="right-float-menu">
+            
+            <view data-tooltip="切换卫星地图">
+                <image mode="aspectFit" bind:tap="toggleSatelliteMode" src="../../images/satellite.png"></image>
+            </view>
+            <view wx:if="{{roles && roles.length > 0}}" data-tooltip="秘密钓点">
+                <image src="/images/lock.png" bind:tap="onSecretClicked"></image>
+            </view>
+            <view wx:if="{{roles && roles.length > 0}}"  data-tooltip="我的钓点">
+                <image mode="aspectFit" bind:tap="onMineSpotsClicked" src="../../images/mine.png"></image>
+            </view>
+            <view data-tooltip="附近钓点">
+                <image mode="aspectFit" bind:tap="onCPSpotClicked" src="../../images/cp.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

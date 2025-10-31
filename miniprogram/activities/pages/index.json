@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "即将上线",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F7FA",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true,
+    "usingComponents": {} 
+  }

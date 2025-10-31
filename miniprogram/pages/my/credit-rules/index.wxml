@@ -1,0 +1,41 @@
+<navigation-bar title="积分规则" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="rule-container {{ios? 'ios':'android'}}" scroll-y>
+    <!-- 顶部说明卡片 -->
+    <view class="intro-card">
+        <view class="intro-icon">
+            <image src="/images/credit.png" mode="aspectFit"></image>
+        </view>
+        <view class="intro-content">
+            <text class="intro-title">积分获取指南</text>
+            <text class="intro-desc">通过完成以下行为获取积分，提升您的钓鱼等级，解锁更多专属特权</text>
+        </view>
+    </view>
+
+    <!-- 分组列表 -->
+    <view wx:for="{{groupedRules}}" wx:for-item="group" wx:for-index="range" wx:key="range" class="group-container">
+        <!-- 分组标题 -->
+        <view class="group-title">
+            <text class="range-text">等级范围：{{range}}</text>
+            <text class="count-text">{{group.length}}条规则</text>
+        </view>
+        <!-- 规则列表 -->
+        <view class="rule-list">
+            <view wx:for="{{group}}" wx:for-item="rule" wx:key="id" class="rule-item">
+                <!-- 行为描述（主内容） -->
+                <view class="behavior-desc">{{rule.behaviorDesc}}</view>
+
+                <!-- 辅助信息行 -->
+                <view class="aux-info">
+                    <!-- 积分值（区分正负） -->
+                    <text class="points positive" wx:if="{{rule.points >= 0}}">+{{rule.points}} 积分</text>
+                    <text class="points negative" wx:else>{{rule.points}} 积分</text>
+
+                    <!-- 限制条件 -->
+                    <text class="limit-desc">{{rule.limitDesc}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="footer"></view>
+</scroll-view>

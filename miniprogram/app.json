@@ -1,0 +1,78 @@
+{
+  "pages": [
+    "pages/anybiting/index",
+    "pages/login/index",
+    "pages/spots/index",
+    "pages/home/index",
+    "pages/my/index",
+    "pages/home/search/index",
+    "pages/home/navigator/index",
+    "pages/spots/discover/index",
+    "pages/home/visitors/index",
+    "pages/error/index",
+    "pages/agrpp/agreement/index",
+    "pages/agrpp/pp/index",
+    "pages/my/user-edit/index",
+    "pages/my/nickname-edit/index",
+    "pages/my/credit-lvl/index",
+    "pages/my/credit-record/index",
+    "pages/my/credit-rules/index",
+    "pages/show/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "一起钓鱼"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#07C160",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/anybiting/index",
+        "iconPath": "images/tabbar/anybiting.png",
+        "selectedIconPath": "images/tabbar/anybiting-active.png",
+        "text": "有口么"
+      },
+      {
+        "pagePath": "pages/spots/index",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_active.png",
+        "text": "钓点库"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "images/tabbar/my.png",
+        "selectedIconPath": "images/tabbar/my_active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "debug": true,
+  "style": "v2",
+  "useExtendedLib": {},
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": [
+    "getFuzzyLocation"
+  ],
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "获取用户地理信息用于完善钓点定位."
+    },
+    "scope.userLocation": {
+      "desc": "获取用户地理信息用于完善钓点定位"
+    }
+  }
+}

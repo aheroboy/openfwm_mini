@@ -1,0 +1,28 @@
+<view class="page-container">
+  <navigation-bar title="查询钓点" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+  <view class="spots-input {{ios? 'ios':'android'}}">
+    <input type="input" bindinput="onSearch" placeholder="输入钓点查询条件" value="{{searchQuery}}" confirm-type="search"></input>
+  </view>
+  <scroll-view class="search-scrollarea {{ios ? 'ios' : 'android'}}" bindscrolltolower="onScrollToLower" scroll-y lower-threshold="20">
+      <view wx:if="{{spotsRs && spotsRs.length > 0}}">
+        <block wx:key="id" wx:for="{{spotsRs}}" wx:for-item="item">
+          <view class="search-item" bind:tap="onSpotPicking" data-val="{{item.id}}">
+            <view class="body">
+              <text class="item-name">{{item.name}}</text>
+              <view class="item-info">
+                <label class="info-label location"><image class="icon" src="../../../images/go.png"></image> {{item.city}}</label>
+                <label class="info-label type"> {{item.isCollected? '收藏' : '自建'}}</label>
+                <label class="info-label update"> {{item.updatedAt}}</label>
+              </view>
+            </view>
+            <view class="arrow-right">
+              <image src="../../../images/arrow-right.png" mode="aspectFit"></image>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="spot-empty" wx:else>
+        没有钓点? 去添加或者收藏。
+      </view>
+  </scroll-view>
+</view>

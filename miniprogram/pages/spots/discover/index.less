@@ -1,0 +1,206 @@
+/* Discover页面样式 - 全新创建 */
+
+// 导入全局样式变量
+@import '../../../app.less';
+
+// 设计系统变量
+@border-color: #eaeaea; // 边框色
+::-webkit-scrollbar {
+  display: none;
+}
+
+// 基础样式
+page {
+  background-color: #f7f7f7;
+  color: @text-primary;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+// 主容器
+.container {
+  padding: 0 24rpx;
+  max-width: 750rpx;
+  margin: 0 auto;
+}
+
+/* 图片展示区 */
+.spot-pics-info {
+  height: 400rpx;
+  width: 100%;
+  position: relative;
+  margin-bottom: @padding-base;
+
+  image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: @radius-base;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 基础信息区 */
+.spot-basic-info {
+  padding: @padding-base 0;
+
+  // 钓点名称-突出显示
+  .spot-name {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: @text-primary;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    margin-bottom: 8rpx;
+  }
+
+  // 状态-次要信息
+  .spot-status {
+    font-size: 20rpx;
+    color: @secondary-text;
+    display: flex;
+    align-items: center;
+    margin-right: 32rpx;
+    & > view {
+      margin-right: 8rpx;
+    }
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 12rpx;
+      height: 12rpx;
+      background-color: @primary-color;
+      border-radius: 50%;
+      margin-right: 8rpx;
+    }
+  }
+}
+
+.spot-body {
+  flex: 1;
+  overflow-y: auto; /* 启用垂直滚动 */
+  -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
+  box-sizing: border-box; /* 包含padding在内的高度计算 */
+  
+  /* 为滚动区域添加底部间距，避免内容被底部按钮遮挡 */
+  padding-bottom: 160rpx;
+}
+/* 规格参数区 - 美化样式 */
+.spot-spec {
+  background: #fff;
+  border-radius: @radius-base;
+  padding: @padding-base;
+  margin-bottom: @margin-base;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+
+  &>view {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    padding: 16rpx 0;
+    margin-left: 16rp;
+    border-bottom: 1rpx solid @border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &>label {
+      width: 180rpx;
+      font-weight: bold;
+      color: @secondary-text;
+      font-size: 28rpx;
+    }
+
+    &>view {
+      display: flex;
+      flex-direction: row;
+
+      &>text {
+        color: @text-primary;
+        margin-right: 8rpx;
+        text-align: right;
+      }
+    }
+
+  }
+}
+
+/* 统计数据区 - 网格美化布局 */
+.spot-statistics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: @radius-base;
+  padding: @padding-base;
+  margin: @margin-base 0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+
+  &>view {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12rpx;
+    box-sizing: border-box;
+
+    &>label {
+      font-size: 24rpx;
+      color: @secondary-text;
+      margin-bottom: 8rpx;
+    }
+
+    &>text {
+      font-size: 20rpx;
+      font-weight: bold;
+      color: @text-primary;
+      margin-left:5rpx;
+    }
+  }
+
+  @media (max-width: 480rpx) {
+    .stat-item {
+      flex: 0 0 50%;
+    }
+  }
+}
+
+/* 描述内容区 - 美化样式 */
+.spot-description {
+  background: #fff;
+  border-radius: @radius-base;
+  padding: @padding-base;
+  margin: @margin-base 0;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+
+  .desc-title {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: @text-primary;
+    margin-bottom: 10rpx;
+    padding-bottom: 12rpx;
+    border-bottom: 1rpx solid @border-color;
+  }
+
+  text {
+    width: 100%;
+    min-height: 300rpx;
+    font-size: 28rpx;
+    line-height: 1.8;
+    color: @text-primary;
+    padding: 12rpx;
+    &::placeholder {
+      color: @secondary-text;
+      font-size: 28rpx;
+    }
+
+    &:focus {
+      border-color: @primary-color;
+      box-shadow: 0 0 0 2rpx fade(@primary-color, 20%);
+    }
+  }
+}
+
+/* 操作区 */
+/* 右侧浮动菜单样式已迁移至全局样式文件app.less中 */

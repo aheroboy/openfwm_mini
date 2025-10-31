@@ -1,0 +1,85 @@
+<navigation-bar title="渔获详情" back="{{!shared}}" color="white" background="#07C160"></navigation-bar>
+<scroll-view scroll-y class="harvest-container {{ios?'ios':'android'}}" lower-threshold="20">
+
+    <!-- 渔获图片轮播 -->
+    <view class="image-swiper-container" wx:if="{{fishingRecord.jsonHisPictures && fishingRecord.jsonHisPictures.length > 0}}">
+        <swiper class="image-swiper" indicator-dots="true" autoplay="false" circular="true" indicator-color="rgba(255,255,255,0.3)" indicator-active-color="#07C160" bindchange="onSwiperChange">
+            <block wx:for="{{fishingRecord.jsonHisPictures}}" wx:key="index">
+                <swiper-item>
+                    <image class="harvest-image" src="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="image-counter" wx:if="{{fishingRecord.jsonHisPictures.length > 1}}">
+            <text class="counter-text">{{currentIndex || 1}}/{{fishingRecord.jsonHisPictures.length}}</text>
+        </view>
+    </view>
+
+    <!-- 渔获详情卡片 -->
+    <view class="details-card">
+        <view class="card-header">
+            <text class="card-title">渔获详情</text>
+            <text class="fishing-time-header">垂钓时间: {{fishingRecord.fishingAt}}</text>
+        </view>
+
+        <view class="detail-row">
+            <view class="detail-label">
+                <text class="label-icon">🐟</text>
+                <text class="label-text">鱼种</text>
+            </view>
+            <text class="detail-value">{{fishingRecord.fishesStr}}</text>
+        </view>
+
+        <view class="detail-row">
+            <view class="detail-label">
+                <text class="label-icon">🏆</text>
+                <text class="label-text">收获情况</text>
+            </view>
+            <text class="detail-value">{{fishingRecord.harvestTypeVal.name}}</text>
+        </view>
+
+        <view class="detail-row">
+            <view class="detail-label">
+                <text class="label-icon">⭐</text>
+                <text class="label-text">评分</text>
+            </view>
+            <view class="rating-container">
+                <view class="stars">
+                    <text wx:for="{{[1,2,3,4,5]}}" wx:key="index" class="star {{index < fishingRecord.score ? 'active' : ''}}">★</text>
+                </view>
+                <text class="score-text">{{fishingRecord.scoreVal.name}}</text>
+            </view>
+        </view>
+
+        <view class="detail-row">
+            <view class="detail-label">
+                <text class="label-icon">📍</text>
+                <text class="label-text">推荐</text>
+            </view>
+            <text class="detail-value">{{fishingRecord.isRec ? '是' : '否'}}</text>
+        </view>
+    </view>
+
+
+    <!-- 描述信息区域 -->
+    <view class="description-section">
+        <view class="section-header">
+            <text class="section-title">描述信息</text>
+        </view>
+
+        <view class="description-content">
+            <text class="description-text">{{fishingRecord.comment || '暂无描述信息'}}</text>
+        </view>
+    </view>
+</scroll-view>
+<view class="right-float-menu">
+    <view data-tooltip="首页">
+        <image src="/images/tabbar/home_active.png" bind:tap="onHomeClicked"></image>
+    </view>
+    <button open-type="share">
+        <image class="share-image" src="/images/share.png" mode="aspectFit"></image>
+    </button>
+    <view data-tooltip="收藏钓点">
+        <image src="/images/go.png" bind:tap="goToSpotDetail"></image>
+    </view>
+</view>

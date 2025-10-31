@@ -1,0 +1,33 @@
+/* components/message/event/new-spot/index.less */
+// 导入全局样式变量
+@import '../../../../app.less';
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// 导入公共消息气泡样式
+@import '../../common.less';
+
+
+// 高亮气泡样式 - 新钓点专属
+.highlight-bubble {
+  background-color: @card-bg;
+  position: relative;
+  width: 100%;
+}
+.message-header {
+    position: absolute; /* 脱离文档流，基于父容器定位 */
+    bottom: 0; /* 顶部对齐父容器 */
+    left: 0; /* 左侧对齐父容器 */
+    z-index: 10; /* 层级高于body，确保覆盖 */
+    width: 100%; /* 宽度占满父容器 */
+    height: 100%;
+    padding: 20px; /* 适当留白，避免内容紧贴边缘 */
+    box-sizing: border-box; /* 确保padding不影响整体宽度 */
+    /* 可选：添加背景色增强可读性（如果图片较亮） */
+    background: linear-gradient(to right, rgba(19, 18, 18, 0.5), transparent);
+
+}

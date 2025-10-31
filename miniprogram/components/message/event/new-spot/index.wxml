@@ -1,0 +1,20 @@
+<!-- 事件类 - 发现新钓点（醒目） -->
+
+<view  bindtap="onNewSpotTab"  class="message-item left {{isDarkTheme ? 'dark-theme' : ''}}"  data-id="4" data-type="event" data-subtype="new-spot">
+  <view class="message-bubble left-bubble highlight-bubble">
+    <view class="message-header">
+      <view class="header-content">
+        <view class="header-title">发现新钓点</view>
+        <view class="header-time">{{message.timestamp}}</view>
+      </view>
+      <view class="header-tag" wx:if="{{message.isHot}}">
+        <text>热门</text>
+      </view>
+    </view>
+    <view class="message-body">
+      <view class="body-image" wx:if="{{message.content.pics.length > 0}}">
+        <image src="{{message.content.pics[0]}}" mode="aspectFill" data-src="{{message.content.pics[0]}}"></image>
+      </view>
+    </view>
+  </view>
+</view>

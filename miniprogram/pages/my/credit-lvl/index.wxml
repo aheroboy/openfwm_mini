@@ -1,0 +1,41 @@
+<!-- 主内容区 -->
+<navigation-bar title="用户等级" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="content {{ios?'ios':'android'}}" scroll-y>
+    <!-- 等级卡片列表 -->
+    <view class="levels-container">
+        <view wx:for="{{lvls}}" wx:key="levelId" class="level-card {{currentLevel == item.levelId ? 'active' : ''}}" bindtap="onLevelSelect" data-level="{{item.levelId}}">
+            <!-- 等级徽章 -->
+            <view class="level-badge">
+                <view class="badge-inner">
+                    <!-- 使用图片或SVG图标表示等级 -->
+                    <image mode="aspectFit" src="../../../images/credit/{{item.uri}}" wx:if="{{item.uri}}"></image>
+                </view>
+                <view class="level-number">{{item.levelId}}</view>
+            </view>
+
+            <!-- 等级信息 -->
+            <view class="level-info">
+                <view class="info-header">
+                    <view class="info-title">
+                        <view class="level-name">{{item.levelName}}</view>
+                        <view class="level-material">积分要求：{{item.minPoints}} - {{item.maxPoints? item.maxPoints: '无限制'}}</view>
+                        <view class="level-material">{{item.coreTrait}}</view>
+                    </view>
+                    <view class="arrow-right"></view>
+                </view>
+
+                <view class="level-desc">
+                    {{item.upgradeThreshold}}
+                </view>
+
+                <!-- 等级标签 -->
+                <view class="level-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+                    <view wx:for="{{item.tags}}" wx:key="index" class="tag {{currentLevel === item.levelId ? 'tag-current' : ''}}">
+                        {{item}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="footer"></view>
+</scroll-view>

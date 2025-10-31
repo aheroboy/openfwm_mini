@@ -1,0 +1,224 @@
+// 导入全局样式变量
+@import '../../../app.less';
+
+// 搜索页面容器
+.page-container {
+  position: relative;
+  --spots-input-height: 120rpx;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+// 搜索输入区域
+.spots-input {
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 24rpx rgba(0, 0, 0, 0.06);
+  transition: all 300ms;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 2*16px);
+  height: 70rpx;
+  box-sizing: border-box;
+  //display: flex;
+  align-items: center;
+  z-index: 99;
+  width: 100%;
+  height: var(--spots-input-height);
+
+  input {
+    flex: 1;
+    height: calc(var(--spots-input-height) -  @spacing-md);
+    background-color: @search-bg;
+    border: 1rpx solid @accent-light;
+    border-radius: @button-radius;
+    padding: 0 @spacing-md;
+    font-size: @font-size-md;
+    color: @text-primary;
+    outline: none;
+    transition: all @transition-normal;
+
+    &:focus {
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 2rpx @primary-color;
+    }
+
+    &::placeholder {
+      color: @text-tertiary;
+    }
+  }
+}
+
+.search-scrollarea.android {
+  height: calc(100vh - @header-bar-height-android - var(--spots-input-height));
+}
+
+.search-scrollarea.ios {
+  height: calc(100vh - @header-bar-height-ios - var(--spots-input-height));
+}
+
+// 搜索结果容器
+.search-rs {
+  padding: @spacing-xl @spacing-xl;
+}
+
+// 搜索结果项
+.search-item {
+  background-color: @card-bg;
+  border-radius: @card-radius;
+  padding: @spacing-xl;
+  margin-bottom: @spacing-sm;
+  box-shadow: @card-shadow;
+  transition: all @transition-normal;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:hover {
+    transform: translateY(-2rpx);
+    box-shadow: @hover-shadow;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: @card-shadow;
+  }
+
+  .body {
+    flex: 1;
+
+    .item-name {
+      font-size: @font-size-lg;
+      color: @text-primary;
+      font-weight: bold;
+      margin-bottom: @spacing-xs;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .item-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: @spacing-xs @spacing-sm;
+
+      .info-label {
+        display: flex;
+        align-items: center;
+        font-size: @font-size-md;
+        color: @text-tertiary;
+
+        .icon {
+          display: inline-block;
+          width: 30rpx;
+          height: 30rpx;
+          margin-right: 6rpx;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+  .arrow-right {
+    width: 44rpx;
+    height: 44rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    image {
+      width: 24rpx;
+      height: 24rpx;
+      opacity: 0.5;
+    }
+  }
+}
+
+// 空状态样式
+.spot-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  color: @text-tertiary;
+  font-size: @font-size-md;
+  text-align: center;
+  padding: @spacing-lg;
+
+  image {
+    width: 160rpx;
+    height: 160rpx;
+    opacity: 0.5;
+    margin-bottom: @spacing-md;
+  }
+}
+
+// 加载更多样式
+.loading-more {
+  display: flex;
+  justify-content: center;
+  padding: @spacing-md 0;
+  color: @text-tertiary;
+  font-size: @font-size-sm;
+}
+
+// 响应式设计
+@media (max-width: @breakpoint-sm) {
+  .spots-input {
+    padding: @spacing-sm;
+
+    input {
+      height: 80rpx;
+      font-size: @font-size-sm;
+    }
+
+    .search-btn {
+      height: 80rpx;
+      padding: 0 @spacing-sm;
+      font-size: @font-size-sm;
+    }
+  }
+
+  .search-item {
+    padding: @spacing-sm;
+  }
+}
+
+@media (min-width: @breakpoint-xl) {
+  .spots-input {
+    padding: @spacing-lg;
+
+    input {
+      height: 96rpx;
+      font-size: @font-size-lg;
+    }
+
+    .search-btn {
+      height: 96rpx;
+      padding: 0 @spacing-lg;
+      font-size: @font-size-lg;
+    }
+  }
+
+  .search-item {
+    padding: @spacing-md;
+
+    .body {
+      .item-name {
+        font-size: @font-size-xl;
+      }
+
+      .item-info {
+        .info-label {
+          font-size: @font-size-sm;
+        }
+      }
+    }
+  }
+}

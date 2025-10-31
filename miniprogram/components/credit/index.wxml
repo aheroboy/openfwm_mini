@@ -1,0 +1,83 @@
+<scroll-view class="container {{ios?'ios':'android'}}" scroll-y enhanced enable-back-to-top>
+  
+  <!-- 等级展示区域 - 钓鱼主题设计 -->
+  <view class="level-header">
+    <view wx:if="{{credit.currentLevel}}" class="level-badge">
+      <image style="width: 100%; height: 100%; border-radius: 50%;" src="../../images/credit/{{credit.currentLevel + 10}}.png"></image>
+    </view>
+    <view class="level-name">LV.{{credit.currentLevel}} {{credit.currentLevelName}}</view>
+    <view class="level-desc">{{credit.currentLvlDesc}}</view>
+  </view>
+
+  <!-- 积分信息卡片 -->
+  <view class="points-info">
+    <view class="points-grid">
+      
+      <view class="points-item">
+        <view class="points-label">当前积分</view>
+        <view class="points-value">{{ credit.currentLevelPoints }}</view>
+      </view>
+      <view class="points-item">
+        <view class="points-label">累计积分</view>
+        <view class="points-value">{{ credit.totalPoints }}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 升级进度条 -->
+  <view class="progress-area">
+    <view class="progress-title">
+      <text>距离 {{ credit.nextLevelName }}</text>
+      <text>{{ credit.nextLevelPoints }}分</text>
+    </view>
+    <view class="progress-bar-container">
+      <view class="progress-bar" style="width: {{ credit.progressPercentage }}"></view>
+    </view>
+    <view class="progress-remaining">还差 {{ credit.remainingPoints }} 积分即可升级</view>
+  </view>
+
+  <!-- 功能按钮组 -->
+  <view class="action-buttons">
+    <button class="action-btn btn-levels" bindtap="goToLevelDetails">等级划分</button>
+    <button class="action-btn btn-points-list" bindtap="goToGetPoints">积分规则</button>
+  </view>
+
+  <!-- 积分设置 -->
+  <view class="points-spend-setting">
+    <view class="section-title">
+        <text>积分设置</text>
+    </view>
+    
+    <view class="setting-item">
+      <view>
+        <view class="setting-label">自动跳过广告</view>
+        <view class="setting-desc">每次跳过扣减5积分</view>
+      </view>
+      <label class="toggle-switch">
+        <switch checked="{{credit.autoSkipAds}}" bindchange="onAutoSkipAdChange"/>
+      </label>
+    </view>
+  </view>
+  
+  <!-- 最近积分记录 -->
+  <view class="points-list-section">
+    <view class="section-title">
+      <text>最近记录</text>
+      <navigator url="/pages/my/credit-record/index" class="more-link">查看全部</navigator>
+    </view>
+    <view class="points-list">
+      <view wx:if="{{credit.recentRecords && credit.recentRecords.length > 0}}">
+        <view class="points-item-record" wx:for="{{ credit.recentRecords }}" wx:key="index">
+          <view class="record-desc">{{ item.reason }}</view>
+          <view class="record-points {{ item.point < 0 ? 'minus' : '' }}">
+            {{ item.point > 0 ? '+' : '' }}{{ item.point }}
+          </view>
+        </view>
+      </view>
+      <view wx:else class="no-records">
+        <view class="no-records-text">暂无积分记录</view>
+      </view>
+    </view>
+  </view>
+
+</scroll-view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "show-harvest":"/components/message/event/show-harvest/index",
+    "new-spot":"/components/message/event/new-spot/index"
+  },
+  "enablePullDownRefresh": true
+}

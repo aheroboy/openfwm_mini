@@ -1,0 +1,132 @@
+<view class="page-container">
+    <navigation-bar class="nav" custom-style="z-index:100" title="{{title}}" back="{{!shared}}">
+    </navigation-bar>
+    <scroll-view class="body-container {{ios ? 'ios' : 'android'}}  " scroll-y enhanced enable-back-to-top lower-threshold="10">
+       
+        <!-- 悬浮菜单 - 优化版 -->
+        <view class="spot-list">
+            <view class="spot-card spot-basic">
+                <view class="spot-pic-container">
+                    <image class="spot-pic" data-pics="{{detail.jsonPics}}" src="{{detail.jsonPics[0]}}" bind:tap="showPictures" mode="aspectFill" binderror="onImageError"></image>
+                </view>
+                <view class="content-body">
+                    <view class="spot-title">
+                        <view>{{detail.name}}</view>
+                    </view>
+                    <view class="spot-info-detail">
+                        <view>
+                            <label>推荐</label>
+                            <text>{{detail.lvl.name}}</text>
+                        </view>
+                        <view>
+                            <label>贡献人</label>
+                            <text> {{detail.nickName}}</text>
+                        </view>
+                        <view>
+                            <label>更新</label>
+                            <text> {{detail.updatedAt}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="spot-prop-container">
+                <view class="spot-card spot-prop">
+                    <label>特性</label>
+                    <view class="spec">
+                        <view wx:for="{{detail.jsonSpotTypes}}" wx:for-item="item" wx:key="type">
+                            <view class="prop-value">{{item.name}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop ">
+                    <label>水域</label>
+                    <view>
+                        <view class="prop-value">{{detail.waterType.name}}</view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop">
+                    <label>收费</label>
+                    <view>
+                        <view class="prop-value">{{!!detail.isFree ? '是':'否'}}</view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop">
+                    <label>车到水</label>
+                    <view>
+                        <view class="prop-value">{{!!detail.isParkingEasy? '近':'远'}}</view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop">
+                    <label>车水距离</label>
+                    <view>
+                        <view class="prop-value">{{detail.distance.name}}</view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop">
+                    <label>级别</label>
+                    <view>
+                        <view class="prop-value">{{detail.lvl.name}}</view>
+                    </view>
+                </view>
+
+                <view class="spot-card spot-prop">
+                    <label>秘密钓点</label>
+                    <view>
+                        <view class="prop-value" style="color:{{!!detail.isPrivate?'gray':'red'}}">{{!!detail.isPrivate?'否':'是'}}</view>
+                    </view>
+                </view>
+
+                <view class="spot-card spot-prop">
+                    <label>查看所需积分</label>
+                    <view>
+                        <view class="prop-value" wx:if="{{!detail.isPrivate}}">{{detail.creditVal?detail.creditVal:'默认'}}</view>
+                        <view class="prop-value" wx:else>不需要</view>
+                    </view>
+                </view>
+
+                <view class="spot-card spot-prop">
+                    <label>禁钓</label>
+                    <view>
+                        <view class="prop-value" style="color:{{ !!detail.isForbidden?'red':'gray'}}">{{detail.isForbidden? '是':'否'}}</view>
+                    </view>
+                </view>
+                <view class="spot-card spot-prop">
+                    <label>鱼类</label>
+                    <view class="fishes">
+                        <view wx:for="{{detail.jsonFishTypes}}" wx:for-item="item" wx:key="type">
+                            <view class="prop-value">{{item.name}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="spot-card comment-section">
+                <label class="section-title">描述</label>
+                <view>
+                    <text class="comment-content">{{detail.description}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="loading-state" wx:if="{{isLoading}}">
+            <image src="/assets/loading.gif" mode="widthFix" />
+        </view>
+    </scroll-view>
+    <view class="right-float-menu">
+        
+        <view  data-tooltip="首页">
+            <image src="/images/tabbar/home_active.png" bind:tap="onHomeClicked"></image>
+        </view>
+            <button open-type="share" >
+                <image class="share-image" src="/images/share.png" mode="aspectFit"></image>
+            </button>
+        <view wx:if="{{detail.createdBy != loginUserId && !detail.collected}}" data-tooltip="收藏钓点">
+            <image src="/images/coll.png" bind:tap="onCollectClicked"></image>
+        </view>
+        <view wx:if="{{detail.isPrivate == 1 || detail.createdBy == loginUserId || detail.collected}}" bind:tap="goFishingClicked" data-tooltip="去钓鱼">
+            <image src="/images/go.png" mode="aspectFit"></image>
+        </view>
+        <view bind:tap="onSpotVisitersClick" data-tooltip="查看钓友记录">
+            <image src="/images/fishes.png" mode="aspectFit"></image>
+        </view>
+    </view>
+</view>

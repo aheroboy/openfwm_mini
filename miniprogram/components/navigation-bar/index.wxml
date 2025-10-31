@@ -1,0 +1,33 @@
+<view class="fishing-nav {{ios ? 'ios' : 'android'}} {{extClass}}" style="color: {{color}}; background: {{background}}; {{displayStyle}};">
+  <view class="fishing-nav__inner" style="{{safeAreaStyle}}">
+    <!-- 左侧区域 -->
+    <view class="fishing-nav__left">
+      <block wx:if="{{back}}">
+        <view class="fishing-nav__btn back-btn" bind:tap="onBack" hover-class="fishing-nav__btn--active">
+          <image class="back-icon" src="/images/back.png" mode="aspectFit"></image>
+          <text wx:if="{{showBackText}}" class="back-text">{{backText}}</text>
+        </view>
+      </block>
+      <block wx:elif="{{homeButton}}">
+        <view class="fishing-nav__btn home-btn" bind:tap="onHome" hover-class="fishing-nav__btn--active">
+          <image class="home-icon" src="../../../images/nav/home.png" mode="aspectFit"></image>
+        </view>
+      </block>
+      <slot name="left"></slot>
+    </view>
+
+    <!-- 中间标题区域 -->
+    <view class="fishing-nav__center">
+      <view wx:if="{{loading}}" class="loading-indicator">
+        <view class="spinner"></view>
+      </view>
+      <text wx:elif="{{title}}" class="nav-title">{{title}}</text>
+      <slot name="center"></slot>
+    </view>
+
+    <!-- 右侧区域 -->
+    <view class="fishing-nav__right">
+      <slot name="right"></slot>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+<navigation-bar title="{{title}}" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view>
+  <map id="navMap" style="width: 100%; height: 100vh;" latitude="{{nav.latitude}}" longitude="{{nav.longitude}}" markers="{{nav.markers}}" scale="{{nav.scale}}" polyline="{{nav.line}}" covers="{{covers}}" show-location>
+
+  <view class="goNav" bind:tap="onGoNavClicked">
+    <image class="go-nav-pic" src="../../../images/navi.png"></image>
+  </view>
+  </map>
+</view>

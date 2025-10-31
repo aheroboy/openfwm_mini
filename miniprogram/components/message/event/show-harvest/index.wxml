@@ -1,0 +1,17 @@
+<!-- 事件类 - 晒渔获 -->
+<view  bind:tap="onShowHarvestTap" class="message-item  left {{isDarkTheme ? 'dark-theme' : ''}}"  data-id="2" data-type="event" data-subtype="catch">
+  <view class="message-bubble left-bubble catch-bubble">
+    <view class="message-header">
+      <view class="header-content">
+        <view class="header-title">晒渔获</view>
+        <view class="header-time">{{message.timestamp}}</view>
+      </view>
+    </view>
+    <view class="message-body">
+      <!-- 优化图片展示区 -->
+      <view class="body-image">
+          <image src="{{message.content.pics[0]}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+</view>

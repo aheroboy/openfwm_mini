@@ -1,0 +1,18 @@
+/* components/message/event/show-harvest/index.less */
+@import '../../common.less';
+.catch-bubble {
+    position: relative;
+    width: 100%;
+}
+.message-header {
+    position: absolute; /* 脱离文档流，基于父容器定位 */
+    bottom: 0; /* 顶部对齐父容器 */
+    left: 0; /* 左侧对齐父容器 */
+    z-index: 10; /* 层级高于body，确保覆盖 */
+    width: 100%; /* 宽度占满父容器 */
+    height: 100%;
+    padding: 20px; /* 适当留白，避免内容紧贴边缘 */
+    box-sizing: border-box; /* 确保padding不影响整体宽度 */
+    /* 可选：添加背景色增强可读性（如果图片较亮） */
+    background: linear-gradient(to right, rgba(15, 15, 15, 0.5), transparent);
+}

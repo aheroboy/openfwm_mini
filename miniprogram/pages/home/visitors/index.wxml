@@ -1,0 +1,44 @@
+<view class="visit-container">
+  <navigation-bar class="nav" title="{{title}}" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+  <scroll-view  scroll-y class="visitor-list {{ios ? 'ios' : 'android'}} " lower-threshold="20" bindscrolltolower="loadMore">
+    <block wx:for="{{visitors}}" wx:for-item="visitor" wx:key="id">
+      <view class="visitor-card" >
+        <!-- 卡片头部信息 -->
+        <view class="card-header">
+          <view class="user-info">
+            <image class="avatar" src="{{visitor.avatarUrl}}" mode="aspectFill" />
+            <view class="user-name">{{visitor.nickName? visitor.nickName : '钓友'}}</view>
+          </view>
+          <view class="visit-time">{{visitor.fishingAt}}</view>
+        </view>
+        <view class="harvest">
+          <view class="fish-type-list">
+            <view class="harvest-fish" wx:if="{{visitor.fishes !== undefined && visitor.fishes.length > 0}}">
+              <label>鱼获:</label>
+              <block  wx:for="{{visitor.fishes}}" wx:for-item="item" wx:key="id">
+                <text>{{item.name}}</text>
+              </block>
+            </view>
+            <view wx:else>
+              <text>
+                这个家伙估计空军了。。。
+              </text>
+            </view>
+          </view>
+        </view>
+        <!-- 用户上传图片区域 -->
+        <view class="image-container">
+          <view class="image-preview">
+            <block wx:for="{{visitor.jsonHisPictures}}" wx:key="index">
+              <image src="{{item}}" mode="aspectFill" class="preview-image" bindtap="onHarvestPicClicked" data-urls="{{visitor.jsonHisPictures}}" data-current="{{item}}" />
+            </block>
+          </view>
+        </view>
+        <view class="harvest-link" data-id="{{visitor.id}}" data-spotId="{{visitor.spotId}}" bind:tap="goHarvest">查看</view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="empty-page" wx:if="{{visitors && visitors.length == 0}}">
+    <text>没有钓友访问过此钓点。</text>
+  </view>
+</view>

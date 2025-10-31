@@ -1,0 +1,44 @@
+<view class="login-page">
+  <!-- 装饰背景 -->
+  <view class="bg-decoration"></view>
+  <view class="bg-decoration bg-decoration-2"></view>
+
+  <!-- 主容器 -->
+  <view class="login-container">
+    <!-- 顶部Logo区域 -->
+    <view class="logo-wrapper">
+      <view class="logo">
+        <image src="../../images/logo.png" mode="aspectFit"></image>
+      </view>
+      <view class="slogan">钓鱼爱好者的专属社区</view>
+    </view>
+
+    <!-- 登录按钮容器 -->
+    <view class="login-btn-container {{!isAgrAgreed || !isPPAgreed ? 'disabled' : ''}}" bindtap="{{isAgrAgreed && isPPAgreed ? 'handleLogin' : ''}}">
+      <button loading="{{loading}}" class="transparent-btn" disabled="{{!isAgrAgreed || !isPPAgreed}}"></button>
+      <view class="btn-content {{!isAgrAgreed || !isPPAgreed ? 'disabled' : ''}}">
+        <text class="btn-text">微信一键登录</text>
+        <text class="btn-subtext">安全便捷，无需注册</text>
+      </view>
+    </view>
+
+    <!-- 用户协议区域 -->
+    <view class="agreement">
+      <view class="agreement-item">
+        <checkbox checked="{{isAgrAgreed}}" bind:tap="handleAgrChange" class="custom-checkbox" />
+        <text>我已阅读并同意</text>
+        <navigator url="/pages/agrpp/agreement/index" class="link">《用户协议》</navigator>
+      </view>
+      <view class="agreement-item">
+        <checkbox checked="{{isPPAgreed}}" bind:tap="handlePPChange" class="custom-checkbox" />
+        <text>我已阅读并同意</text>
+        <navigator url="/pages/agrpp/pp/index" class="link">《隐私政策》</navigator>
+      </view>
+    </view>
+
+    <!-- 版本信息 -->
+    <view class="version">
+      版本: {{version}}
+    </view>
+  </view>
+</view>
