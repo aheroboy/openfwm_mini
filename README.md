@@ -48,7 +48,7 @@ openfwm_mini 是一款专为钓鱼爱好者设计的微信小程序，提供钓�
 ### 安装步骤
 1. 克隆本仓库：
    ```bash
-   git clone https://gitee.com/sgyang/openfwm_mini.git
+   [git clone https://gitee.com/sgyang/openfwm_mini.git](https://github.com/aheroboy/openfwm_mini.git)
    ```
 2. 使用微信开发者工具导入项目
 3. 安装依赖：
@@ -111,7 +111,7 @@ openfwm_mini 是一款专为钓鱼爱好者设计的微信小程序，提供钓�
 欢迎各位开发者参与项目贡献！
 
 ### 相关项目链接
-- [微信小程序端](https://gitee.com/sgyang/openfwm_mini)
+- [微信小程序端]([([https://github.com/aheroboy/openfwm_mini.git])
 - [Android端](https://gitee.com/sgyang/openfwm_android)
 - [管理端](https://gitee.com/sgyang/openfwm_mgr)
 
